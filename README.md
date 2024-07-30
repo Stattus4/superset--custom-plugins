@@ -32,3 +32,12 @@ Similar to superset-plugin-map-google, this plugin can render polygons on the ma
 - **Voronoi Diagrams**: Render Voronoi polygons on a Google Map.
 - **Interactive Maps**: Pan, zoom, and explore your data geographically.
 - **Point Visualization**: Plot data points along with Voronoi diagrams.
+
+
+### How to use:
+
+1 - Copy the plugin to superset/superset-frontend/plugins;
+2 - In the packaje.json of the superset-frontend folder, add the folder path in dependencies, example: "superset-plugin-map-google": "file:./plugins/superset-plugin-map-google";
+3 - In superset/superset-frontend/src/visualizations/presets/MainPreset.js import the packages, example:
+  import { SupersetPluginMapGoogle } from 'plugins/superset-plugin-map-google/src'; and new SupersetPluginMapGoogle().configure({ key: 'ext-google' });
+4 - Now return to superset/superset-frontend and use the command: npm i and npm run build.
