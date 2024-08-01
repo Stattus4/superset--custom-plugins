@@ -116,6 +116,10 @@ export interface CustomStylesProps {
   boldText: boolean;
 }
 
+export interface DataRecord {
+  timestamp: string; 
+}
+
 export interface TableChartTransformedProps<D extends DataRecord = DataRecord> {
   timeGrain?: TimeGranularity;
   height: number;

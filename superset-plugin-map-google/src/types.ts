@@ -17,6 +17,7 @@
  * under the License.
  */
 import { QueryFormData, supersetTheme, TimeseriesDataRecord } from '@superset-ui/core';
+import PropTypes from 'prop-types';
 
 export interface SupersetPluginChartVilleStylesProps {
   height: number;
@@ -36,5 +37,6 @@ export type SupersetPluginChartVilleQueryFormData = QueryFormData &
 export type SupersetPluginChartVilleProps = SupersetPluginChartVilleStylesProps &
   SupersetPluginChartVilleCustomizeProps & {
     data: TimeseriesDataRecord[];
+    apiKey: PropTypes.string,
     // add typing here for the props you pass in from transformProps.ts!
   };

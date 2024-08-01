@@ -17,9 +17,6 @@
  * under the License.
  */
 
-
-const keiAPiGoogle = 'AIzaSyBkF2eLJeDHk3H15Za2d1WUnl9tU7g0Zp0';
-
 import React, { useState, useMemo, useCallback } from 'react';
 import { DataPoint, SupersetPluginMapGoogleVoronoiProps, SupersetPluginMapGoogleVoronoiStylesProps } from './types';
 import { GoogleMap, LoadScript, Marker, InfoWindow, Polygon, MarkerClusterer } from '@react-google-maps/api';
@@ -47,8 +44,8 @@ const Styles = styled.div<SupersetPluginMapGoogleVoronoiStylesProps>`
 
   pre {
     height: ${({ theme, headerFontSize, height }: { theme: SupersetTheme, headerFontSize: string, height: number }) => (
-      height - theme.gridUnit * 12 - theme.typography.sizes[headerFontSize]
-    )}px;
+    height - theme.gridUnit * 12 - theme.typography.sizes[headerFontSize]
+  )}px;
   }
 `;
 
@@ -61,15 +58,15 @@ function createMarkerIconNew(id: string, text1: string, text2: string, color: st
     return '';
   }
 
-  const size = 42; 
-  const idHeight = 15; 
+  const size = 42;
+  const idHeight = 15;
   const totalHeight = size + idHeight;
 
   canvas.width = size;
   canvas.height = totalHeight;
 
-  
-  context.fillStyle = '#000'; 
+
+  context.fillStyle = '#000';
   context.font = 'bold 12px Arial';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
@@ -88,9 +85,9 @@ function createMarkerIconNew(id: string, text1: string, text2: string, color: st
   context.textAlign = 'center';
   context.textBaseline = 'middle';
 
-  const textY = idHeight + size / 2; 
-  context.fillText(`CH: ${text1}`, size / 2, textY - 6); 
-  context.fillText(`P: ${text2}`, size / 2, textY + 6); 
+  const textY = idHeight + size / 2;
+  context.fillText(`CH: ${text1}`, size / 2, textY - 6);
+  context.fillText(`P: ${text2}`, size / 2, textY + 6);
 
   return canvas.toDataURL('image/png');
 }
@@ -173,7 +170,7 @@ export default function SupersetPluginMapGoogleVoronoi(props: SupersetPluginMapG
   const markerIcons = useMemo(() => {
     return standardizedData.map(point => ({
       point,
-      icon: createMarkerIconNew(point.device_id.slice(-4), 'Test',`${point.alt}`, '#000')
+      icon: createMarkerIconNew(point.device_id.slice(-4), 'Test', `${point.alt}`, '#000')
     }));
   }, [standardizedData]);
 
@@ -221,7 +218,7 @@ export default function SupersetPluginMapGoogleVoronoi(props: SupersetPluginMapG
       height={height}
       width={width}
     >
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || keiAPiGoogle}>
+      <LoadScript googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY || ''}>
         <GoogleMap
           mapContainerStyle={{ width: width - 15, height: height - 15 }}
           center={center}

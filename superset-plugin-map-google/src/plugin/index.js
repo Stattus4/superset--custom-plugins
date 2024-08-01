@@ -22,6 +22,7 @@ import controlPanel from './controlPanel';
 import transformProps from './transformProps';
 import thumbnail from '../images/thumbnail.png';
 
+
 export default class SupersetPluginMapGoogle extends ChartPlugin {
   /**
    * The constructor is used to pass relevant metadata and callbacks that get
@@ -36,7 +37,7 @@ export default class SupersetPluginMapGoogle extends ChartPlugin {
   constructor() {
     const metadata = new ChartMetadata({
       description: 'Superset Plugin Google Maps',
-      name: t('Google Maps Plugin'),
+      name: t("Google Maps"),
       thumbnail,
     });
 

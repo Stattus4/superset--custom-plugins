@@ -17,9 +17,6 @@
  * under the License.
  */
 
-const keiAPiGoogle = 'AIzaSyBkF2eLJeDHk3H15Za2d1WUnl9tU7g0Zp0';
-
-
 import React, { useState, useMemo } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { SupersetPluginChartVilleProps, SupersetPluginChartVilleStylesProps } from './types';
@@ -116,12 +113,12 @@ export default function SupersetPluginMapGoogle(props: SupersetPluginChartVilleP
       height={height}
       width={width}
     >
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || keiAPiGoogle}>
+      <LoadScript googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY || ''}>
         <GoogleMap
           mapContainerStyle={{ width: width - 15, height: height - 15 }}
           center={center}
           zoom={12}
-          options={{styles: StyleMap}}
+          options={{ styles: StyleMap }}
         >
           {standardizedData.map((point, index) => (
             <Marker
@@ -145,13 +142,13 @@ export default function SupersetPluginMapGoogle(props: SupersetPluginChartVilleP
                     <a href={`https://4fluid-iot-comissionamento.s3.sa-east-1.amazonaws.com/${selectedPoint.set_image}`} target="_blank" rel="noopener noreferrer">
                       <img src={`https://4fluid-iot-comissionamento.s3.sa-east-1.amazonaws.com/${selectedPoint.set_image}`} alt="Foto do conjunto" style={{ width: '70px', height: '70px', borderRadius: 5 }} />
                     </a>
-                    <div style={{marginTop: 10}}>Foto do conjunto</div>
+                    <div style={{ marginTop: 10 }}>Foto do conjunto</div>
                   </div>
                   <div style={{ textAlign: 'center' }}>
                     <a href={`https://4fluid-iot-comissionamento.s3.sa-east-1.amazonaws.com/${selectedPoint.device_image}`} target="_blank" rel="noopener noreferrer">
                       <img src={`https://4fluid-iot-comissionamento.s3.sa-east-1.amazonaws.com/${selectedPoint.device_image}`} alt="Foto do dispositivo" style={{ width: '70px', height: '70px', borderRadius: 5 }} />
                     </a>
-                    <div style={{marginTop: 10}}>Foto do dispositivo</div>
+                    <div style={{ marginTop: 10 }}>Foto do dispositivo</div>
                   </div>
                 </div>
               </div>

@@ -18,7 +18,7 @@
  */
 
 import {
-  TableChartTransformedProps, DataType
+  TableChartTransformedProps, DataType, CustomStylesProps, DataRecord
 } from './types';
 
 
@@ -26,18 +26,8 @@ import {
 import React, { useEffect, useState, useRef } from 'react';
 import { styled, SupersetTheme } from '@superset-ui/core';
 
+
 import * as echarts from 'echarts';
-
-interface CustomStylesProps {
-  theme: SupersetTheme;
-  height: number;
-  width: number;
-  boldText: boolean;
-}
-
-interface DataRecord {
-  timestamp: string; 
-}
 
 const Styles = styled.div<CustomStylesProps>`
   padding: ${({ theme }: { theme: SupersetTheme }) => theme.gridUnit * 2}px;
@@ -56,7 +46,7 @@ const Styles = styled.div<CustomStylesProps>`
 
 export default function TableChart(props: TableChartTransformedProps) {
   const { data, height, width } = props;
-  console.log('Data')
+
   const chartRef = useRef<HTMLDivElement | null>(null);
   const [sortedData, setSortedData] = useState<DataRecord[]>([]);
 
@@ -147,6 +137,8 @@ export default function TableChart(props: TableChartTransformedProps) {
       ref={chartRef}
       height={height}
       width={width}
+      boldText={true}
+      headerFontSize={"m"}
     >
       <div ref={chartRef} style={{ height: height, width: width }}></div>
     </Styles>
