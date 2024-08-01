@@ -36,8 +36,22 @@ Similar to superset-plugin-map-google, this plugin can render polygons on the ma
 
 ### How to use:
 
-1 - Copy the plugin to superset/superset-frontend/plugins;
-2 - In the packaje.json of the superset-frontend folder, add the folder path in dependencies, example: "superset-plugin-map-google": "file:./plugins/superset-plugin-map-google";
-3 - In superset/superset-frontend/src/visualizations/presets/MainPreset.js import the packages, example:
+1. Copy the plugin to superset/superset-frontend/plugins;
+2. In the packaje.json of the superset-frontend folder, add the folder path in dependencies, example: "superset-plugin-map-google": "file:./plugins/superset-plugin-map-google";
+3. In superset/superset-frontend/src/visualizations/presets/MainPreset.js import the packages, example:
   import { SupersetPluginMapGoogle } from 'plugins/superset-plugin-map-google/src'; and new SupersetPluginMapGoogle().configure({ key: 'ext-google' });
-4 - Now return to superset/superset-frontend and use the command: npm i and npm run build.
+4. Now return to superset/superset-frontend and use the command: npm i and npm run build.
+
+#### Attention:
+
+For the plugins to work with Google Maps, you need to adjust the webpack.config.js file as follows:
+
+// expose mode variable to other modules
+  new webpack.DefinePlugin({
+    'process.env.WEBPACK_MODE': JSON.stringify(mode),
+    'process.env.REDUX_DEFAULT_MIDDLEWARE':
+      process.env.REDUX_DEFAULT_MIDDLEWARE,
+    'process.env.SCARF_ANALYTICS': JSON.stringify(process.env.SCARF_ANALYTICS),
+    'process.env.GOOGLE_MAPS_API_KEY': JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
+    ## more plugins,
+  }),
